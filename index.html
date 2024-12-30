@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>.fetch(fonts)</title>
+    <link rel="stylesheet" href="/fonts.css">
+    <style>
+      body {
+        font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+        background-color: #000;
+        color: white;
+        margin: 0;
+        padding: 0;
+        height: 100vh;
+        font-family: monospace, sans-serif;
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .background-grid {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-image: radial-gradient(rgb(43, 43, 46) 1px, transparent 1px);
+        background-size: 2rem 2rem;
+        z-index: -1;
+        animation: moveGrid 4s linear infinite;
+        transition: background-position-x 400ms;
+      }
+
+      @keyframes moveGrid {
+        0% {
+          background-position: 0 0;
+        }
+
+        100% {
+          background-position: 2rem 2rem;
+        }
+      }
+
+      .background-grid:hover {
+        background-position-x: 2rem;
+      }
+
+      .container {
+        font-size: 5rem;
+        display: flex;
+        height: 1.5em;
+      }
+
+      .letter {
+        transition: font-family 0.5s;
+      }
+
+      code {
+        margin-top: 20px;
+        font-size: 2rem;
+        background: #000;
+        border: 2px solid #262626;
+        filter: drop-shadow(0 0 0.5rem #222);
+        color: #dcdcdc;
+        padding: 10px;
+        border-radius: 10px;
+        display: block;
+        white-space: pre-wrap;
+      }
+
+      .font-name {
+        color: white;
+      }
+
+      .link {
+        display: inline-block;
+        text-decoration-style: wavy;
+        text-decoration-line: underline;
+        text-decoration-color: rgb(84, 222, 171);
+        color: rgb(84, 222, 171);
+        transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.9);
+        filter: drop-shadow(0 0 0.5rem rgba(84, 222, 171, 0.8));
+      }
+
+      .link:hover {
+        transform: scale(1.05) skew(-5deg);
+      }
+    </style>
+  </head>
+  <body>
+    <div class="background-grid"></div>
+    <div class="container">
+      <a style="color:#f97583; filter: drop-shadow(0 0 2rem #f97583);">.</a>
+      <a style="color:#79b8ff; filter: drop-shadow(0 0 2rem #79b8ff);">fetch(</a>
+      <span class="letter" style="color:#a5d6ff; filter: drop-shadow(0 0 2rem #a5d6ff);">f</span>
+      <span class="letter" style="color:#a5d6ff; filter: drop-shadow(0 0 2rem #a5d6ff);">o</span>
+      <span class="letter" style="color:#a5d6ff; filter: drop-shadow(0 0 2rem #a5d6ff);">n</span>
+      <span class="letter" style="color:#a5d6ff; filter: drop-shadow(0 0 2rem #a5d6ff);">t</span>
+      <span class="letter" style="color:#a5d6ff; filter: drop-shadow(0 0 2rem #a5d6ff);">s</span>
+      <a style="color:#79b8ff; filter: drop-shadow(0 0 2rem #79b8ff);">)</a>
+    </div>
+    <code id="fonts-code" class="language-js"></code>
+    <br>
+    <br>
+    <p> font hosting for my website located at <a class="link" href="httsp://t3rm1n4l.dev">https://t3rm1n4l.dev</a>
+    </p>
+    <script>
+      const fonts = ['Yuruka', 'Iosevka Term Web'];
+      const fontsCodeElement = document.getElementById('fonts-code');
+      fontsCodeElement.innerHTML = `<a style="color:#f97583;filter: drop-shadow(0 0 0.5rem #f97583);">const</a> <a style="color:#79b8ff; filter: drop-shadow(0 0 0.5rem #79b8ff);">fonts</a> <a style="color:#f97583;filter: drop-shadow(0 0 0.5rem #f97583);">=</a> <a style="color:#79b8ff; filter: drop-shadow(0 0 0.5rem #79b8ff);">[</a>\n    ${fonts.map(font => `<a style="color:#a5d6ff; filter: drop-shadow(0 0 1rem #a5d6ff);">'<span style="font-family: ${font};">${font}</span>'</a>`).join(",\n    ")}\n<a style="color:#79b8ff; filter: drop-shadow(0 0 0.5rem #79b8ff);">]</a>`;
+      const fontsstuff = ['Arial', 'Verdana', 'Tahoma', 'Courier New', 'Georgia', 'Times New Roman', 'Comic Sans MS', 'Impact', 'Lucida Console', 'Palatino'];
+
+      function changeFonts() {
+        document.querySelectorAll('.letter').forEach((letter, index) => {
+          const randomFont = fontsstuff[Math.floor(Math.random() * fontsstuff.length)];
+          letter.style.fontFamily = randomFont;
+        });
+      }
+      const container = document.querySelector('.container');
+      container.querySelectorAll('.letter').forEach((letter, index) => {
+        letter.style.fontFamily = fonts[index] || 'Arial';
+      });
+      setInterval(changeFonts, 200);
+    </script>
+  </body>
+</html>
